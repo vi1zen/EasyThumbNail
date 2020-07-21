@@ -1,0 +1,3 @@
+include ':transferee'
+include ':app'
+rootProject.name = "EasyThumbNail"
