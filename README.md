@@ -1,5 +1,7 @@
-# Transferee [![](https://jitpack.io/v/Hitomis/transferee.svg)](https://jitpack.io/#Hitomis/transferee)
+# Transferee [![](https://jitpack.io/v/vi1zen/EasyThumbNail.svg)](https://jitpack.io/#vi1zen/EasyThumbNail)
 transferee 可以帮助你完成从缩略视图到原视图的无缝过渡转变, 优雅的浏览普通图片、长图、gif图、视频等不同格式的多媒体。
+
+##此项目基于[transferee](https://github.com/Hitomis/transferee)开源项目进行重构而成
 
 支持的功能:
 
@@ -41,7 +43,6 @@ allprojects {
 step2.
 ```
 implementation 'com.github.vi1zen:EasyThumbNail:v1.0.0'
-
 ```
 
 # Usage
@@ -149,106 +150,35 @@ transferee.destroy()
 | setOnTransfereeStateChangeListener(listener) | 设置 transferee 显示/关闭状态改变的监听器 |
 
 # Update log
-+ v1.6.1
-   - 新增图片方向自动校正功能
-   - 新增图片处理，优化大图的显示
-   - ImageLoader 接口代码重构简化
-   - State 代码重构，去除了无用代码，并删除了 RemoteThumbState
-   - 修复部分机型上 stage 模式动画在阶段切换的时候抖动的 bug
-   - 修复部分机型上状态栏和导航栏显示错误的问题
-   - 修复打开和关闭的状态不能保持一致的 bug
-   - 下滑手势优化
-   - 重置不再当前显示区域的图片状态
-   - 优化了内存占用，当浏览多图相册时，保证内存稳定
-   - 解决了因为 Config 资源未回收而导致的内存泄漏问题
-
-+ v1.6.0
-   - 新增视频播放以及视频配套功能的支持
-   - 新增 enableDragPause 属性控制视频拖拽关闭时是否暂停
-   - 新增 enableHideThumb 属性控制缩略图是否消失
-   - 新增 enableScrollingWithPageChange 属性控制用户的列表是否跟随 transferee 页面切换而滚动
-   - 优化下拉关闭手势的交互
-   - 优化页面切换时，性能较差手机上可能出现一次闪屏的问题
-   - 优化在没有网络的情况下，transferee 启动或者关闭时一些边界性质的问题
-   - 优化图片没有加载出来的时候，手势关闭的时候动画不正常的问题
-   - 修复因为无法获取 originImage 导致的占位图为空的 bug
-   - 修复加载失败的时候，无法通过点击屏幕关闭的 bug
-   - 修复关闭时，背景色渐变算法错误的 bug
-   - 修复使用修复 bindImageView api 出现数组下标越界的 bug
-   - 修复当动画时长较长时，出现的没有打开完成之前，就能使用物理按键关闭的 bug
-   - 修复部分机型上只加载缩略图，没有加载高清图，打开后，占位图大小不一样的 bug
-   - 修复了全面屏、刘海屏 dialog 全屏适配错误的 bug
-   - 修复部分机型上 enableDragHide 功能不正常的 bug
-   - 修复弱网或者无网的情况下，被隐藏的页面占位图不显示的 bug
-   - 修复了一些代码逻辑错误
-
-+ v1.5.2
-   - 修改 transferee 容器 dialog 固定为全屏样式。更好的配合当前可定制化的状态栏。
-   - transferee 绑定的 ListView 或者 RecyclerView 支持添加 header 或者 footer
-   - RecyclerViewActivity 新增线性排列和九宫格排列切换，演示在不同的列表下 transferee 使用方式
-
-+ v1.5.1
-  - 修改在无网络的时候，使用 GlideImageLoader 加载图片闪退和行为错乱的问题
-  - 添加 enableDragHide 属性，控制在拖拽关闭的时候，是否立即隐藏其他 view
-  - 由于历史原因，不再兼容4.4以下的全屏模式。同时修复了 StatusBar 抖动的问题
-  - 拓展 Uri 格式的图片数据源接口
-  - 添加不绑定 view 也能使用 Transferee 的状态模型
-  - 同步更新 demo
-
-+ v1.5.0
-  - 新增拖拽关闭功能
-  - 新增 gif 图片和大长图显示
-  - 添加图片源文件保存功能
-  - 添加 GlideImageLoader 作为图片加载的扩展项
-  - 添加 PicassoLoader 作为加载图片的扩展项
-  - 新增自定义显示面板 ui 的接口，可以让用户自己添加 view 到显示面板上
-  - 兼容 AndroidX
-  - 修复长图显示模糊的问题
-  - 修复因为网络错误或者图片地址问题而导致图片加载失败后，进度条没有关闭的bug
-  - 兼容图片比ImageView多的情况 「fix bug#70」
-  - 化调用方式，不需要关注缩略图片是否加载完成
-  - 修复缓存清除的crash
-
-+ v1.3.0
-  - 支持 transferee 绑定单个 ImageView 直接使用
-  - 支持 transferee 绑定单个 ImageView 后多样化展示图片，兼容有缩略图，无缩略图，或者实际图片数量远大于这里的一个 ImageView 数量，例如点击相册封面图片，可以查看相册中其他的图片的的功能
-  - 优化 api 使用方式，最简可以只需要绑定控件，传入图片地址后就能使用
-  - 优化用户体验，不再需要关注缩略图是否加载完成，任何时刻都可以立即打开 transferee
-  - 修复内存泄漏问题
-  - 简化 demo 代码
-
-+ v1.2.0
-  - 针对之前版本的使用复杂考虑，添加了直接绑定 ListView，GridView，RecyclerView 即可使用，不再需要人肉传入 originImageList
-  - 修复有超出屏幕外图片情境下 transferee 崩溃的情景
-  - 修复 Issues 中各位同学反馈的bug
-
-+ v1.1.0
-  - 修复 transferee 单例为普通实例，解决多个界面公用 transferee 单例时的异常问题
-
 + v1.0.0
-  - 将项目托管到 jitpack。目前可以使用添加 dependencies 的方式，导入 transferee 组件
+   - 重构transferee部分代码
+   - 简化使用方式
 
-+ v0.5
-  - 优化打开或者关闭 transferee 时背景色显示效果，从直接显示背景色优化为渐变显示。
-  - 基于 [#26](https://github.com/Hitomis/transferee/issues/26) 添加 transferee 使用本地图片场景下的 Demo
-  - 为 transferee 组件添加背景色自定义功能
-  - 为 transferee 组件添加长按监听器，并添加了长按保存图片到相册的示例代码
-  - 更新了部分示例代码中失效的图片地址
+# Thanks
+[Hitomis/transferee](https://github.com/Hitomis/transferee)
 
 # Licence
-    Copyright 2017 Vans, Inc.
+MIT License
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+Copyright (c) 2020 vi1zen
 
-        http://www.apache.org/licenses/LICENSE-2.0
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
  
 
 
