@@ -40,20 +40,8 @@ allprojects {
 
 step2.
 ```
-// 添加所有 module  [包括 Transferee、GlideImageLoader、PicassoImageLoader、UniversalImageLoader]
-implementation 'com.github.Hitomis:transferee:1.6.1'
+implementation 'com.github.vi1zen:EasyThumbNail:v1.0.0'
 
-// 单独添加核心 module Transferee, 之后至少还需要添加以下三种图片加载器中的一种
-implementation 'com.github.Hitomis.transferee:Transferee:1.6.1'
-
-// 添加 Glide 图片加载器
-implementation 'com.github.Hitomis.transferee:GlideImageLoader:1.6.1'
-
-// 添加 Picasso 图片加载器
-implementation 'com.github.Hitomis.transferee:PicassoImageLoader:1.6.1'
-
-// 添加 Universal 图片加载器
-implementation 'com.github.Hitomis.transferee:UniversalImageLoader:1.6.1'
 ```
 
 # Usage
@@ -61,8 +49,7 @@ implementation 'com.github.Hitomis.transferee:UniversalImageLoader:1.6.1'
 ```
 Transferee transfer = Transferee.getDefault(context);
 transfer.apply(TransferConfig.build()
-        .setImageLoader(UniversalImageLoader.with(getApplicationContext()))
-        .setSourceUrlList(SourceConfig.getMixingSourceGroup())
+        .setSourceModelList(SourceConfig.getMixingSourceGroup())
         .create()
 ).show());
 
@@ -81,8 +68,7 @@ transferee = Transferee.getDefault(context);
 step 2: 为 transferee 创建参数配置器
 ```
 TransferConfig config = TransferConfig.build()
-       .setSourceImageList(sourceUrlList) // 资源 url 集合, String 格式
-       .setSourceUriList(sourceUriList) // 资源 uri 集合， Uri 格式
+       .setSourceModelList(sourceUriList) // 资源 Model 集合， Any 格式
        .setMissPlaceHolder(R.mipmap.ic_empty_photo) // 资源加载前的占位图
        .setErrorPlaceHolder(R.mipmap.ic_empty_photo) // 资源加载错误后的占位图
        .setProgressIndicator(new ProgressPieIndicator()) // 资源加载进度指示器, 可以实现 IProgressIndicator 扩展
@@ -123,8 +109,7 @@ transferee.destroy()
 # Config
 | 属性 | 说明 |
 | :--: | :--: |
-| sourceUrlList | 将要预览的资源 url 集合, String 格式 |
-| sourceUriList | 将要预览的资源 uri 集合， Uri 格式 |
+| sourceModelList | 将要预览的资源 Model 集合, Any 格式 |
 | nowThumbnailIndex | 缩略图在图组中的索引, 如果你绑定了 ListView 或者 RecyclerView，这个属性是必须的，否则可以忽略; 亦或可以作为打开 transferee 时指定初始化显示页面的 position |
 | offscreenPageLimit | 显示 transferee 时初始化加载的资源数量, 默认为1, 表示第一次加载3张(nowThumbnailIndex, nowThumbnailIndex + 1, nowThumbnailIndex - 1); 值为 2, 表示加载5张。依次类推 |
 | missPlaceHolder | 缺省的占位图，资源 id 格式。资源未加载完成时默认显示的图片 |
@@ -141,7 +126,7 @@ transferee.destroy()
 | enableScrollingWithPageChange | 是否启动列表随着 page 的切换而滚动，仅仅针对绑定 RecyclerView/GridView/ListView 有效, 启动之后因为列表会实时滚动，缩略图 view 将不会出现为空的现象，从而保证关闭 transferee 时为过渡关闭动画， 默认关闭 |
 | progressIndicator | 资源加载进度指示器 (默认内置 ProgressPieIndicator 和 ProgressBarIndicator)。可实现 IProgressIndicator 接口定义自己的资源加载进度指示器 |
 | indexIndicator | 资源索引指示器 (默认内置 CircleIndexIndicator 和 NumberIndexIndicator)。可实现 IIndexIndicator 接口定义自己的资源索引指示器 |
-| imageLoader | 资源加载器。可实现 ImageLoader 接口定义自己的图片加载器 |
+| imageLoader | 资源加载器(可选，已内置Glide)。可实现 ImageLoader 接口定义自己的图片加载器 |
 | imageId | RecyclerView 或者 ListView 的 ItemView 中的 ImageView id|
 | customView | 用户自定义的视图，放置在 transferee 显示后的面板之上 |
 | listView | 如果你是使用的 ListView 或者 GridView 来排列显示图片，那么需要将你的 ListView 或者 GridView 传入 bindListView() 方法中 |
@@ -162,13 +147,6 @@ transferee.destroy()
 | destroy() | 销毁 transferee 使用到的资源， 防止内存泄漏 |
 | getImageFile(url) | 获取与 url 对应的缓存图片 |
 | setOnTransfereeStateChangeListener(listener) | 设置 transferee 显示/关闭状态改变的监听器 |
-
-# Thanks
-如果你觉得这个项目帮助到了你，对你项目的用户体验有提升，或者帮你解决了一些问题，可以扫描下面支付宝二维码给个随意打赏或者给个 star。你的鼓励是我维护项目最大的动力。
-
-另外由于平时比较忙，都是自己的休息时间更新，如果你的 issues 比较急，可以给个针对你问题觉得合适的打赏，我会优先解决。时间不够充裕，还请谅解。
-
-<img src="preview/pay.jpg" width="300" />
 
 # Update log
 + v1.6.1
