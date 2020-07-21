@@ -1,8 +1,6 @@
 # Transferee [![](https://jitpack.io/v/vi1zen/EasyThumbNail.svg)](https://jitpack.io/#vi1zen/EasyThumbNail)
 transferee 可以帮助你完成从缩略视图到原视图的无缝过渡转变, 优雅的浏览普通图片、长图、gif图、视频等不同格式的多媒体。
 
-*此项目基于[transferee](https://github.com/Hitomis/transferee)开源项目进行重构而成*
-
 支持的功能:
 
 + 支持视频预览
