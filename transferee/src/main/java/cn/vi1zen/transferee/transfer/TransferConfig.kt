@@ -207,8 +207,9 @@ class TransferConfig {
         private var footerSize = 0
         private var longClickListener: Transferee.OnTransfereeLongClickListener? = null
 
-        fun setImageLoader(imageLoader: ImageLoader){
+        fun setImageLoader(imageLoader: ImageLoader) : Builder{
             this.imageLoader = imageLoader
+            return this
         }
 
         /**
