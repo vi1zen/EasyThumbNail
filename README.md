@@ -40,7 +40,7 @@ allprojects {
 
 step2.
 ```
-implementation 'com.github.vi1zen:EasyThumbNail:v1.0.0'
+implementation 'com.github.vi1zen:EasyThumbNail:v1.0.1'
 ```
 
 # Usage
@@ -148,6 +148,9 @@ transferee.destroy()
 | setOnTransfereeStateChangeListener(listener) | 设置 transferee 显示/关闭状态改变的监听器 |
 
 # Update log
++ v1.0.1
+   - 优化config Builder
+
 + v1.0.0
    - 重构transferee部分代码
    - 简化使用方式
